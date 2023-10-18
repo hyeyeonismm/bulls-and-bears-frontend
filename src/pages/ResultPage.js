@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, styled, Button, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import Header from '../components/Header';
 import { BeatLoader } from 'react-spinners';
+import axios from 'axios';
 
 
 function ResultPage() {
@@ -36,19 +37,19 @@ function ResultPage() {
 	return (
 		<>
 			<Header />
-	
-				<>
-					<Grid
-						sx={{
-							margin: '30px 140px',
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-							gap: 3,
-							justifyContent: 'space-around',
-						}}>
-						{/* <StockStepper name={name} /> */}
-						{/* <Container sx={{ width: '397px', borderRadius: '40px', padding: '30px 40px' }}>
+
+			<>
+				<Grid
+					sx={{
+						margin: '30px 140px',
+						display: 'flex',
+						flexDirection: 'row',
+						alignItems: 'center',
+						gap: 3,
+						justifyContent: 'space-around',
+					}}>
+					{/* <StockStepper name={name} /> */}
+					{/* <Container sx={{ width: '397px', borderRadius: '40px', padding: '30px 40px' }}>
 						<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>{`${name}`}님의 최적 포트폴리오</Grid>
 						<Grid sx={GridStyle}>
 							<div>총 자산</div>
@@ -59,16 +60,16 @@ function ResultPage() {
 							<div style={InputStyle}>{duration}개월</div>
 						</Grid>
 					</Container> */}
-						<Container sx={{ width: '803px', borderRadius: '20px', padding: '20px' }}>
-							<Grid sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
-								<div style={{ fontWeight: 600, fontSize: 18 }}>추천 종목</div>
-								<Button sx={ButtonStyle}>더보기</Button>
-							</Grid>
-							
-						</Container>
-					</Grid>
-					
-				</>
+					<Container sx={{ width: '803px', borderRadius: '20px', padding: '20px' }}>
+						<Grid sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
+							<div style={{ fontWeight: 600, fontSize: 18 }}>추천 종목</div>
+							<Button sx={ButtonStyle}>더보기</Button>
+						</Grid>
+
+					</Container>
+				</Grid>
+
+			</>
 			)}
 		</>
 	);
