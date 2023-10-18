@@ -2,9 +2,8 @@ import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Grid, styled, Button, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import Header from '../components/Header';
-import ApexCharts from 'react-apexcharts';
 import { BeatLoader } from 'react-spinners';
-import axios from 'axios';
+
 
 function ResultPage() {
 	const [stockData, setStockData] = useState();
@@ -33,65 +32,11 @@ function ResultPage() {
 		}
 	}, [reportId]);
 
-	const handleTableClick = (data) => {
-		const prices = data.data.response.body.items.item.map((item) => parseInt(item.clpr, 10));
-		const dates = data.data.response.body.items.item.map((item) => {
-			const year = item.basDt.substring(2, 4);
-			const month = item.basDt.substring(4, 6);
-			const day = item.basDt.substring(6, 8);
-			return `${year}년 ${month}월 ${day}일`;
-		});
-
-		const xaxisDates = dates.map((date) => {
-			return date.substring(0, date.length - 4);
-		});
-
-		const reversedDates = [...dates].reverse();
-		const reversedXaxisDates = xaxisDates.reverse();
-		const stockName = data.data.response.body.items.item[0].itmsNm;
-
-		setSeries([{ name: stockName, data: prices.reverse() }]);
-		setOptions({
-			chart: { type: 'line', zoom: { enabled: false } },
-			dataLabels: { enabled: false },
-			stroke: { curve: 'straight' },
-			title: {
-				text: stockName,
-				align: 'center',
-				offsetX: 0,
-				offsetY: 302,
-			},
-			tooltip: {
-				enabled: true,
-				intersect: false,
-				x: {
-					formatter: function (index) {
-						return reversedDates[index - 1];
-					},
-				},
-				y: {
-					formatter: function (value) {
-						return value + ' 원';
-					},
-				},
-			},
-			grid: { row: { colors: ['#f3f3f3', 'transparent'], opacity: 0.5 } },
-			xaxis: {
-				categories: reversedXaxisDates,
-				tickAmount: 11,
-				title: stockName,
-			},
-		});
-	};
 
 	return (
 		<>
 			<Header />
-			{loading ? (
-				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-					<BeatLoader color='#3f51b5' loading={loading} size={20} />
-				</div>
-			) : (
+	
 				<>
 					<Grid
 						sx={{
@@ -119,51 +64,10 @@ function ResultPage() {
 								<div style={{ fontWeight: 600, fontSize: 18 }}>추천 종목</div>
 								<Button sx={ButtonStyle}>더보기</Button>
 							</Grid>
-							<div style={{ maxHeight: '190px', overflowY: 'auto', marginTop: '8px' }}>
-								<Table sx={{ minWidth: 650 }} aria-label='stock table'>
-									<TableHead>
-										<TableRow sx={{ fontWeight: 600 }}>
-											<TableStyle>종목</TableStyle>
-											<TableStyle align='right'>종가</TableStyle>
-											<TableStyle align='right'>등락률</TableStyle>
-										</TableRow>
-									</TableHead>
-									<TableBody>
-										{stockData &&
-											stockData.map((data, index) => (
-												<TableRow
-													key={index}
-													onClick={() => handleTableClick(data)}
-													sx={{
-														cursor: 'pointer',
-														'&:hover': { backgroundColor: '#f0f0f0' },
-														'&:active': { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
-													}}>
-													<TableCell>{data.data.response.body.items.item[0].itmsNm}</TableCell>
-													<TableCell align='right'>
-														{parseInt(data.data.response.body.items.item[0].clpr).toLocaleString('ko-KR')}원
-													</TableCell>
-													<TableCell
-														align='right'
-														style={{
-															color: parseFloat(data.data.response.body.items.item[0].fltRt) >= 0 ? 'red' : 'blue',
-														}}>
-														{parseFloat(data.data.response.body.items.item[0].fltRt) >= 0 ? '+' : ''}
-														{parseFloat(data.data.response.body.items.item[0].fltRt).toFixed(2)}%
-													</TableCell>
-												</TableRow>
-											))}
-									</TableBody>
-								</Table>
-							</div>
+							
 						</Container>
 					</Grid>
-					<Grid sx={{ margin: '30px 140px' }}>
-						<div style={{ fontWeight: 600, fontSize: '20px', padding: '10px 20px' }}>주가 그래프</div>
-						<Container sx={{ borderRadius: '20px', height: '350px' }}>
-							<ApexCharts options={options} series={series} type='line' height={320} />
-						</Container>
-					</Grid>
+					
 				</>
 			)}
 		</>
