@@ -164,7 +164,7 @@ function PortfolioPage() {
 						받을 수 있어요
 					</Grid>
 
-					<Container sx={{ marginTop: '30px' }}>
+					{/* <Container sx={{ marginTop: '30px' }}>
 						<Grid>
 							<strong>더 오랜 기간 보유하고 싶으신가요?</strong> <br />
 							시뮬레이션으로 예상 배당금을 확인해보세요!
@@ -202,7 +202,7 @@ function PortfolioPage() {
 							onClick={onClickSimulate}>
 							조회하기
 						</Button>
-					</Container>
+					</Container> */}
 				</RightContainer>
 			</Grid>
 		</>

@@ -1,13 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Grid, styled, Button, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
+import { TableContainer, Paper, Grid, styled, Button, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import Header from '../components/Header';
 import { BeatLoader } from 'react-spinners';
 import axios from 'axios';
 
 
 function ResultPage() {
-	const [stockData, setStockData] = useState();
 	const [series, setSeries] = useState([]);
 	const [options, setOptions] = useState({});
 	const [loading, setLoading] = useState(true);
@@ -16,7 +15,12 @@ function ResultPage() {
 	const name = location.state?.name;
 	const { amount, duration } = location.state || {};
 	const stockNames = ['삼성전자', 'SK하이닉스', 'LG디스플레이', '카카오', '동국제약'];
-
+	// 주식 정보 데이터
+	const stockData = [
+		{ name: '삼일제약', price: '6,250', change: '-2/19%' },
+		{ name: '유한양행', price: '6,150', change: '-17.45%' },
+		{ name: 'jb금융지주', price: '11,340', change: '+2.90%' },
+	];
 	useEffect(() => {
 		const fetchReportData = async () => {
 			try {
@@ -48,6 +52,9 @@ function ResultPage() {
 						gap: 3,
 						justifyContent: 'space-around',
 					}}>
+					<Container>Hyeyeon Kim님의 포트폴리오
+
+					</Container>
 					{/* <StockStepper name={name} /> */}
 					{/* <Container sx={{ width: '397px', borderRadius: '40px', padding: '30px 40px' }}>
 						<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>{`${name}`}님의 최적 포트폴리오</Grid>
@@ -63,14 +70,33 @@ function ResultPage() {
 					<Container sx={{ width: '803px', borderRadius: '20px', padding: '20px' }}>
 						<Grid sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
 							<div style={{ fontWeight: 600, fontSize: 18 }}>추천 종목</div>
-							<Button sx={ButtonStyle}>더보기</Button>
+							<TableContainer component={Paper}>
+								<Table>
+									<TableHead>
+										<TableRow>
+											<TableCell>회사명</TableCell>
+											<TableCell>주가</TableCell>
+											<TableCell>변동률</TableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{stockData.map((stock, index) => (
+											<TableRow key={index}>
+												<TableCell>{stock.name}</TableCell>
+												<TableCell>{stock.price}</TableCell>
+												<TableCell>{stock.change}</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</TableContainer>
 						</Grid>
 
 					</Container>
 				</Grid>
 
 			</>
-			)}
+
 		</>
 	);
 }
