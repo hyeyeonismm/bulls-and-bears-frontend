@@ -5,7 +5,6 @@ import background from '../images/background.svg';
 import mainIcon from '../images/imageIcon.png';
 import LoginModal from '../components/LoginModal.js';
 import StartModal from '../components/StartModal.js';
-import axios from 'axios';
 
 function MainPage() {
 	const [loginMessage, setLoginMessage] = useState();
