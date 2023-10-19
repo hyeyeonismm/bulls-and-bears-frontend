@@ -126,7 +126,7 @@ const cssStyle = {
 	justifyContent: 'center',
 	alignItems: 'center',
 	height: '100vh',
-	animation: 'moveUpDown 3.5s infinite',
+	animation: 'moveUpDown 3.3s infinite',
 	padding: '100px 0px 0px 80px',
 	width: 690,
 	height: 600,
