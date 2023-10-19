@@ -10,6 +10,13 @@ function cleanString(str) {
 	return str.replace(/\r\n\t/g, '');
 }
 
+function determineColor(stock, index) {
+	// You can set your logic here. For the sake of this example,
+	// I'm just alternating colors based on the index.
+	// You could also use properties of the stock like stock.price, stock.amount, etc.
+	return index % 2 === 0 ? '#f4cccc' : '#ccccf4';
+}
+
 function ResultPage() {
 	const location = useLocation();
 	const reportId = location.state.reportId;
@@ -79,15 +86,16 @@ function ResultPage() {
 										<div key={index}>
 											<Grid
 												sx={{
-													background: '#f4cccc',
-													borderRadius: 20,
-													padding: '30px',
-													width: '150px',
-													height: '150px',
 													textAlign: 'center',
+													background: determineColor(stock, index),
+													borderRadius: 100,
+													paddingTop: '40px',
+													marginBottom: '8px',
+													width: '130px',
+													height: '130px',
 												}}>
-												<div style={{ paddingTop: '20px' }}>{stock.stockName}</div>
-												<div style={{ paddingTop: '5px' }}>{stock.amount}주</div>
+												<div>{stock.stockName}</div>
+												<div>{stock.amount}주</div>
 											</Grid>
 										</div>
 									))}
