@@ -63,12 +63,12 @@ jobs:
    - name: Update Kubernetes resources
      run: |
       pwd
-      cd manifest/overlays/${{ env.ENV_NAME }}/ 
+      cd client-manifest/overlays/${{ env.ENV_NAME }}/ 
       kustomize edit set image ${{ env.APP }}:client-${{ github.sha }}
 
    - name: Commit manifest files
      run: |
-      cd manifest
+      cd client-manifest
       git config --global user.email "chxrryda@gmail.com"
       git config --global user.name "kkkwp"
       git commit -am "Update image"
