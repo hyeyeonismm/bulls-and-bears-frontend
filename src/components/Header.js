@@ -31,7 +31,7 @@ function Header() {
 					onClick={onClickHome}
 					style={{ padding: '45px 100px', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center' }}>
 					<img style={{ width: 31.058, height: 32.453, cursor: 'pointer' }} src={logo} alt='Logo' />
-					<div style={{ fontFamily: 'Pacifico', color: '#074c83', cursor: 'pointer', fontSize: 18 }}>Bulls & Bares</div>
+					<div style={{ fontFamily: 'Pacifico', color: '#074c83', cursor: 'pointer', fontSize: 18 }}>Bulls & Bears</div>
 				</div>
 				<Grid
 					sx={{
@@ -49,7 +49,7 @@ function Header() {
 	);
 }
 
-const ItemButton = styled(Button)(({}) => ({
+const ItemButton = styled(Button)(({ }) => ({
 	fontWeight: 400,
 	borderBottom: 'none',
 	color: '#58606d',
