@@ -71,35 +71,37 @@ function ResultPage() {
 						<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '15px', marginLeft: '25px' }}>
 							{name}님의 최적 포트폴리오
 						</Grid>
-						<Grid sx={{ height: '200px', padding: '30px 40px' }}>
+						<Grid
+							sx={{ width: '1000px', height: '200px', padding: '30px 40px', display: 'flex', flexDirection: 'row', gap: 8 }}>
 							<Grid
 								sx={{
 									color: '#1D242A',
 									display: 'flex',
-									flexDirection: 'column',
+									flexDirection: 'row', // This ensures child items are laid out in a row
+									gap: 8,
 									paddingTop: '0px',
 									paddingLeft: '20px',
 									paddingRight: '20px',
+									alignItems: 'center', // Optional: This centers the child items vertically
+									flexWrap: 'wrap', // Optional: This allows the items to wrap to the next line if they exceed the container's width
 								}}>
-								<div>
-									{reportData.map((stock, index) => (
-										<div key={index}>
-											<Grid
-												sx={{
-													textAlign: 'center',
-													background: determineColor(stock, index),
-													borderRadius: 100,
-													paddingTop: '40px',
-													marginBottom: '8px',
-													width: '130px',
-													height: '130px',
-												}}>
-												<div>{stock.stockName}</div>
-												<div>{stock.amount}주</div>
-											</Grid>
-										</div>
-									))}
-								</div>
+								{reportData.map((stock, index) => (
+									<Grid
+										key={index}
+										sx={{
+											textAlign: 'center',
+											background: determineColor(stock, index),
+											borderRadius: 100,
+											paddingTop: '40px',
+											marginBottom: '8px',
+											marginLeft: '8px', // Optional: This gives a little spacing between items
+											width: '130px',
+											height: '130px',
+										}}>
+										<div>{stock.stockName}</div>
+										<div>{stock.amount}주</div>
+									</Grid>
+								))}
 							</Grid>
 						</Grid>
 					</Grid>

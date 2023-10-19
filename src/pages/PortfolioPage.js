@@ -63,14 +63,11 @@ function PortfolioPage() {
 			case 100000:
 				setAmountLabel('10만원');
 				break;
+			case 300000:
+				setAmountLabel('30만원');
+				break;
 			case 500000:
 				setAmountLabel('50만원');
-				break;
-			case 1000000:
-				setAmountLabel('100만원');
-				break;
-			case 5000000:
-				setAmountLabel('500만원');
 				break;
 
 			default:
@@ -91,6 +88,9 @@ function PortfolioPage() {
 				setDurationLabel('6개월');
 				break;
 
+			case 10:
+				setDurationLabel('10개월');
+				break;
 			default:
 				setDurationLabel('날짜');
 		}
@@ -109,9 +109,8 @@ function PortfolioPage() {
 								<InputLabel id='amount-label'>자산</InputLabel>
 								<Select labelId='amount-label' id='amount' value={amount} label='amount' onChange={amountChange}>
 									<MenuItem value={100000}>10만원</MenuItem>
+									<MenuItem value={300000}>30만원</MenuItem>
 									<MenuItem value={500000}>50만원</MenuItem>
-									<MenuItem value={1000000}>100만원</MenuItem>
-									<MenuItem value={5000000}>500만원</MenuItem>
 								</Select>
 							</FormControl>
 						</div>
@@ -123,6 +122,8 @@ function PortfolioPage() {
 									<MenuItem value={2}>2개월</MenuItem>
 
 									<MenuItem value={6}>6개월</MenuItem>
+
+									<MenuItem value={10}>10개월</MenuItem>
 								</Select>
 							</FormControl>
 						</div>
