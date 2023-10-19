@@ -65,8 +65,10 @@ function MainPage() {
 					flexDirection: 'row',
 				}}>
 				<Section>
-					<div style={{ fontSize: '24px', fontWeight: 600 }}>매 달 받게될 예상 배당금과 내 자산 분석까지 한 번에</div>
-					<div style={{ fontFamily: 'Pacifico', fontSize: '48px', letterSpacing: '2.88px' }}>Bulls & Bears</div>
+					<div style={{ fontSize: '24px', fontWeight: 600 }}>주식 초보자들을 위한 배당금 수익 예측 서비스</div>
+					<div style={{ fontFamily: 'Pacifico', fontSize: '48px', letterSpacing: '2.88px', fontWeight: 800 }}>
+						Bulls & Bears
+					</div>
 					<div style={{ fontSize: '18px', letterSpacing: '1.08px' }}>
 						신뢰할 수 있는 금융데이터를 기반으로 <br />
 						주식 초보자를 위한 서비스를 제공합니다.
@@ -88,7 +90,7 @@ function MainPage() {
 				</Section>
 
 				<Grid>
-					<img style={{ padding: '100px 0px 0px 80px', width: 690, height: 600 }} src={mainIcon} alt='Main Icon' />
+					<img style={cssStyle} src={mainIcon} alt='Main Icon' />
 				</Grid>
 			</Grid>
 		</>
@@ -120,5 +122,15 @@ const StyledButton = styled(Button)(() => ({
 	color: '#fff',
 	border: '1px solid #fff',
 }));
+const cssStyle = {
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	height: '100vh',
+	animation: 'moveUpDown 3.5s infinite',
+	padding: '100px 0px 0px 80px',
+	width: 690,
+	height: 600,
+};
 
 export default MainPage;
