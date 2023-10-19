@@ -9,7 +9,6 @@ import MyPage from './pages/MyPage';
 
 const GlobalStyle = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
  body, html {
         margin: 0;
         padding: 0;

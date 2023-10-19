@@ -3,7 +3,6 @@ import { Grid, Button, styled } from '@mui/material';
 import logo from '../images/Logo.svg';
 
 function Header() {
-	const location = useLocation();
 	const navigate = useNavigate();
 	const name = localStorage.getItem('loggedInUserName');
 	const onClickHome = () => {
@@ -17,9 +16,7 @@ function Header() {
 	const onClickPortfolio = () => {
 		navigate('/portfolio');
 	};
-	const onClickSimulate = () => {
-		navigate('/simulate');
-	};
+
 	const onClickMyPage = () => {
 		navigate(`/mypage?name=${encodeURIComponent(name)}`);
 	};
@@ -31,7 +28,8 @@ function Header() {
 					onClick={onClickHome}
 					style={{ padding: '45px 100px', display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center' }}>
 					<img style={{ width: 31.058, height: 32.453, cursor: 'pointer' }} src={logo} alt='Logo' />
-					<div style={{ fontFamily: 'Pacifico', color: '#074c83', cursor: 'pointer', fontSize: 18, fontWeight: 800 }}>
+					<div
+						style={{ fontFamily: 'Pacifico !important', color: '#074c83', cursor: 'pointer', fontSize: 18, fontWeight: 800 }}>
 						Bulls & Bears
 					</div>
 				</div>
@@ -43,7 +41,6 @@ function Header() {
 						gap: 2,
 					}}>
 					<ItemButton onClick={onClickPortfolio}>포트폴리오 확인하기</ItemButton>
-					{/* <ItemButton onClick={onClickSimulate}>시뮬레이션</ItemButton> */}
 					<ItemButton onClick={onClickMyPage}>마이페이지</ItemButton>
 				</Grid>
 			</div>
