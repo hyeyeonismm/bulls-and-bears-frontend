@@ -1,126 +1,69 @@
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import {
-	TableContainer,
-	Paper,
-	Grid,
-	styled,
-	Button,
-	Table,
-	TableHead,
-	TableBody,
-	TableRow,
-	TableCell,
-	Typography,
-} from '@mui/material';
+import { Grid, styled, Button, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import Header from '../components/Header';
-import StockCarousel from '../components/StockCarousel';
 import AboutStock from '../components/AboutStock';
 import axios from 'axios';
 
+function cleanString(str) {
+	return str.replace(/\r\n\t/g, '');
+}
+
 function ResultPage() {
-	const [series, setSeries] = useState([]);
-	const [options, setOptions] = useState({});
-	const [loading, setLoading] = useState(true);
 	const location = useLocation();
 	const reportId = location.state.reportId;
-	const name = location.state?.name;
-	const { amount, duration } = location.state || {};
-
-	// State to store the selected stock name
-	const [selectedStockName, setSelectedStockName] = useState('');
-
-	// Handle row click to open the modal
+	const name = new URLSearchParams(location.search).get('name');
+	const [contents, setContents] = useState([]);
+	const [reportData, setReportData] = useState([]);
 	const [open, setOpen] = useState(false);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleRowClick = (name) => {
-		// 다른 로직...
 		setIsModalOpen(true);
 	};
 
-	// Handle modal close
 	const handleClose = () => {
 		setOpen(false);
 	};
 
-	// 주식 정보 데이터
-	const stockData = [
-		{ name: '삼일제약', price: '6,250', change: '-2.19%' },
-		{ name: '유한양행', price: '6,150', change: '-17.45%' },
-		{ name: 'JB금융지주', price: '11,340', change: '+2.90%' },
-	];
-
-	const dataBody = [
-		{
-			rank: 1,
-			stbd_nm: '에스코넥',
-			stock_code: '096630',
-		},
-		{
-			rank: 2,
-			stbd_nm: '서남',
-			stock_code: '294630',
-		},
-		{
-			rank: 3,
-			stbd_nm: '에스와이',
-			stock_code: '109610',
-		},
-		{
-			rank: 4,
-			stbd_nm: '이미지스',
-			stock_code: '115610',
-		},
-		{
-			rank: 5,
-			stbd_nm: '삼성중공업',
-			stock_code: '010140',
-		},
-	];
 	useEffect(() => {
 		const fetchReportData = async () => {
 			try {
 				const response = await axios.get(`api/v1/report/${reportId}`);
-				console.log(response.data);
-				// setReportData(response.data);
+				setReportData(response.data.stockGroupInfoList[0].stockInfoList);
 			} catch (error) {
 				console.error(error);
+			}
+		};
+
+		const fetchData = async () => {
+			try {
+				const response = await axios.get('/api/v1/sinhan');
+				const contentString = cleanString(response.data.dataBody.list[0].content);
+				const contentArray = contentString.split('-').map((item) => item.trim());
+				setContents(contentArray);
+			} catch (error) {
+				console.log(error);
 			}
 		};
 
 		if (reportId) {
 			fetchReportData();
 		}
+		fetchData();
 	}, [reportId]);
 
 	return (
 		<>
 			<Header />
-
 			<>
-				<Grid
-					sx={{
-						margin: '30px 140px',
-						display: 'flex',
-						flexDirection: 'row',
-						alignItems: 'center',
-						gap: 3,
-						justifyContent: 'space-around',
-					}}>
-					{/* <StockStepper name={name} /> */}
-					<Container sx={{ width: '427px', borderRadius: '40px', padding: '30px 40px' }}>
-						<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>Hyeyeon Kim님의 최적 포트폴리오</Grid>
-						{/* <Grid sx={GridStyle}>
-							<div>총 자산</div>
-							<div style={InputStyle}>{amount}만원 이상</div>
-						</Grid>
-						<Grid sx={GridStyle}>
-							<div>예상 배당금</div>
-							<div style={InputStyle}>{duration}개월</div>
-						</Grid> */}
+				<Grid sx={{ margin: '30px 120px' }}>
+					<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px', marginLeft: '25px' }}>
+						{name}님의 최적 포트폴리오
+					</Grid>
+					<Container sx={{ width: '327px', borderRadius: '40px', padding: '30px 40px' }}>
 						<Grid
 							sx={{
 								color: '#1D242A',
@@ -130,57 +73,74 @@ function ResultPage() {
 								paddingLeft: '20px',
 								paddingRight: '20px',
 							}}>
-							<Grid sx={{ background: '#f4cccc', borderRadius: 20, padding: '20px', marginBottom: '8px' }}>삼일제약: 2주</Grid>
-							<Grid sx={{ background: '#f9cb9c', borderRadius: 20, padding: '20px', marginBottom: '8px' }}>유한양행: 1주</Grid>
-							<Grid sx={{ background: '#cfe2f3', borderRadius: 20, padding: '20px', marginBottom: '8px' }}>
-								JB금융지주: 4주
-							</Grid>
-						</Grid>
-					</Container>
-					<Container sx={{ width: '803px', borderRadius: '20px', padding: '20px' }}>
-						<Grid sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-							<div style={{ fontWeight: 600, fontSize: 18 }}>추천종목</div>
-
-							<div style={{ maxHeight: '190px', marginTop: '8px' }}>
-								<Table sx={{ minWidth: 650 }} aria-label='stock table'>
-									<TableHead>
-										<TableRow sx={{ fontWeight: 600 }}>
-											<TableStyle>종목</TableStyle>
-											<TableStyle align='right'>종가</TableStyle>
-											<TableStyle align='right'>등락률</TableStyle>
-										</TableRow>
-									</TableHead>
-									<TableBody>
-										{stockData &&
-											stockData.map((data, index) => (
-												<TableRow
-													key={index}
-													sx={{
-														cursor: 'pointer',
-														'&:hover': { backgroundColor: '#f0f0f0' },
-														'&:active': { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
-													}}
-													onClick={() => handleRowClick(data.name)}>
-													<TableCell>{data.name}</TableCell>
-													<TableCell align='right'>{data.price}원</TableCell>
-													<TableCell
-														align='right'
-														style={{
-															color: parseFloat(data.change) >= 0 ? 'red' : 'blue',
-														}}>
-														{data.change}
-													</TableCell>
-												</TableRow>
-											))}
-									</TableBody>
-								</Table>
+							<div>
+								{reportData.map((stock, index) => (
+									<div key={index}>
+										<Grid
+											sx={{
+												background: '#f4cccc',
+												borderRadius: 20,
+												padding: '20px',
+												marginBottom: '8px',
+											}}>
+											{stock.stockName}: {stock.amount}주
+										</Grid>
+									</div>
+								))}
 							</div>
 						</Grid>
 					</Container>
-				</Grid>
-				<Grid sx={{ marginTop: '40px', marginLeft: '150px', marginRight: '150px' }}>
-					<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>시장 상위 종목</Grid>
-					<StockCarousel data={dataBody} />
+
+					<Grid sx={{ alignItems: 'center', marginTop: '50px', display: 'flex', flexDirection: 'row' }}>
+						<Grid>
+							<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '15px', marginLeft: '25px' }}>추천 종목</Grid>
+							<Container sx={{ width: '703px', height: '260px', borderRadius: '20px', padding: '20px' }}>
+								<Grid sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
+									<div style={{ maxHeight: '190px', marginTop: '8px' }}>
+										<Table sx={{ minWidth: 650 }} aria-label='stock table'>
+											<TableHead>
+												<TableRow sx={{ fontWeight: 600 }}>
+													<TableStyle>종목</TableStyle>
+													<TableStyle>수량</TableStyle>
+													<TableStyle align='right'>종가</TableStyle>
+													<TableStyle align='right'>배당금</TableStyle>
+												</TableRow>
+											</TableHead>
+											<TableBody>
+												{reportData.map((stock, index) => (
+													<TableRow
+														key={index}
+														sx={{
+															cursor: 'pointer',
+															'&:hover': { backgroundColor: '#f0f0f0' },
+															'&:active': { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
+														}}>
+														<TableCell>{stock.stockName}</TableCell>
+														<TableCell>{stock.amount}주</TableCell>
+														<TableCell align='right'>{stock.price}원</TableCell>
+														<TableCell align='right'>{stock.dividend}원</TableCell>
+													</TableRow>
+												))}
+											</TableBody>
+										</Table>
+									</div>
+								</Grid>
+							</Container>
+						</Grid>
+						<Grid sx={{ margin: '0px 150px 30px 50px ' }}>
+							<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>마켓 이슈</Grid>
+							<Grid
+								sx={{ width: '450px', height: '260px', padding: '10px 20px', border: '1px solid #ddd', borderRadius: '20px' }}>
+								<Carousel autoPlay={true} navButtonsAlwaysVisible={true}>
+									{contents.slice(0, 8).map((content, index) => (
+										<Grid sx={{ padding: '0px 40px' }} key={index}>
+											<Grid sx={{ padding: '30px' }}>{content}</Grid>
+										</Grid>
+									))}
+								</Carousel>
+							</Grid>
+						</Grid>
+					</Grid>
 				</Grid>
 
 				<AboutStock open={isModalOpen} onClose={() => setIsModalOpen(false)} />
@@ -190,27 +150,9 @@ function ResultPage() {
 }
 const Container = styled(Grid)(() => ({
 	background: '#fff',
-	height: '300px',
+	height: '200px',
 }));
 
-const GridStyle = {
-	color: '#1D242A',
-	display: 'flex',
-	flexDirection: 'row',
-	padding: '15px 30px',
-};
-
-const InputStyle = {
-	fontSize: '17px',
-	marginTop: '-4px',
-	marginLeft: '20px',
-	width: 'auto',
-	background: 'rgba(0, 0, 0, 0.10)',
-	color: '#7B7B7B',
-	borderRadius: '7px',
-	padding: '5px 11px',
-	textAlign: 'center',
-};
 const TableStyle = styled(TableCell)(() => ({
 	borderBottom: '1px solid #999',
 	fontWeight: 'bold',

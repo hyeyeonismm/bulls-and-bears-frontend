@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Grid, Modal, Stack, Avatar, TextField, InputAdornment } from '@mui/material';
 import Close from '@mui/icons-material/CloseRounded';
 
-function Dividend({ open, onClose }) {
+function Dividend({ open, onClose, name }) {
 	return (
 		<>
 			<Modal open={open} onClose={onClose}>
@@ -22,8 +22,7 @@ function Dividend({ open, onClose }) {
 								번 돈 중 일부를 나눠 가져가기로 했다면,
 								<br /> 그 나눠진 돈이 바로 배당금입니다!
 								<br />
-								즉, <strong> Hyeyeon Kim 님이 보유하고 있는 주식의 회사가 돈을 벌면 그 중 일부를 주는 것</strong>이
-								배당금이예요!
+								즉, <strong>{name}님이 보유하고 있는 주식의 회사가 돈을 벌면 그 중 일부를 주는 것</strong>이 배당금이예요!
 							</Grid>
 						</Grid>
 					</>

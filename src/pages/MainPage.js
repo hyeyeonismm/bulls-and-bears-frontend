@@ -34,7 +34,7 @@ function MainPage() {
 			setOpenStartModal(true);
 			return;
 		}
-		navigate('/portfolio', {
+		navigate(`/portfolio${location.search}`, {
 			state: { name: name },
 		});
 	};

@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Grid, Button, styled } from '@mui/material';
 import logo from '../images/Logo.svg';
 
 function Header() {
+	const location = useLocation();
 	const navigate = useNavigate();
-
+	const name = localStorage.getItem('loggedInUserName');
 	const onClickHome = () => {
-		const name = localStorage.getItem('loggedInUserName');
 		if (name) {
 			navigate(`/?name=${encodeURIComponent(name)}&fromHomeButton=true`);
 		} else {
@@ -20,8 +20,8 @@ function Header() {
 	const onClickSimulate = () => {
 		navigate('/simulate');
 	};
-	const onClickIssue = () => {
-		navigate('/issue');
+	const onClickMyPage = () => {
+		navigate(`/mypage?name=${encodeURIComponent(name)}`);
 	};
 
 	return (
@@ -43,8 +43,8 @@ function Header() {
 						gap: 2,
 					}}>
 					<ItemButton onClick={onClickPortfolio}>포트폴리오 확인하기</ItemButton>
-					{/* <ItemButton onClick={onClickSimulate}>시뮬레이션</ItemButton>
-					<ItemButton onClick={onClickIssue}>오늘의 이슈</ItemButton> */}
+					{/* <ItemButton onClick={onClickSimulate}>시뮬레이션</ItemButton> */}
+					<ItemButton onClick={onClickMyPage}>마이페이지</ItemButton>
 				</Grid>
 			</div>
 		</>

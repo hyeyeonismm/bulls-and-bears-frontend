@@ -8,9 +8,9 @@ import Dividend from '../components/Dividend.js';
 
 function PortfolioPage() {
 	const location = useLocation();
-	const name = location.state?.name;
+	const name = new URLSearchParams(location.search).get('name');
 	const [open, setOpen] = useState(false);
-
+	const [reportId, setReportId] = useState();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const onClickButton = () => {
@@ -27,25 +27,25 @@ function PortfolioPage() {
 	const navigate = useNavigate();
 	const [amountLabel, setAmountLabel] = useState('금액');
 	const [durationLabel, setDurationLabel] = useState('날짜');
-	const [reportId, setReportId] = useState();
 	const [totalDividend, setTotalDividend] = useState();
-	const [showDiv, setShowDiv] = useState(false);
 
 	const onClickResult = () => {
-		navigate('/result', { state: { reportId } });
+		navigate(`/result?name=${encodeURIComponent(name)}`, { state: { reportId } });
 	};
 
 	const postToBackend = async () => {
 		try {
-			const response = await axios.post('api/v1/report/', { amount, duration }, { withCredentials: true });
-
-			console.log('Success:', response);
-			console.log(response.data.reportId);
-			console.log(response.data.totalDividend);
+			const response = await axios.post(
+				'/api/v1/report?name=' + name,
+				{ amount, duration },
+				{
+					withCredentials: true,
+				},
+			);
 			setReportId(response.data.reportId);
 			setTotalDividend(response.data.totalDividend);
 		} catch (error) {
-			console.error('Error:', error);
+			console.error(error);
 		}
 	};
 
@@ -195,7 +195,7 @@ function PortfolioPage() {
 					</div>
 				</RightContainer>
 			</Grid>
-			<Dividend open={isModalOpen} onClose={() => setIsModalOpen(false)} />
+			<Dividend open={isModalOpen} onClose={() => setIsModalOpen(false)} name={name} />
 		</>
 	);
 }
