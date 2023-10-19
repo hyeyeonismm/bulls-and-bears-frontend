@@ -39,7 +39,7 @@ function MainPage() {
 	};
 
 	const Login = async () => {
-		window.location.href = 'oauth2/authorization/google';
+		window.location.href = '/oauth2/authorization/google';
 	};
 
 	const closeLoginModal = () => {
