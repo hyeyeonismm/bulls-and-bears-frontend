@@ -1,19 +1,13 @@
-FROM node:18.18.2 as builder
+FROM node:18.18
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
+WORKDIR /app
 
-RUN npm install --silent
-# RUN npm install react-scripts@3.4.1 -g --silent
+COPY package.json .
 
-COPY . /usr/src/app
-RUN npm run build
+RUN npm install
 
-FROM nginx:latest
-
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+COPY . .
 
 EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD ["npm", "start"]
