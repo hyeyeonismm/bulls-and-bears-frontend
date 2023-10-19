@@ -91,7 +91,7 @@ function ResultPage() {
 						</Grid>
 					</Container>
 
-					<Grid sx={{ alignItems: 'center', marginTop: '50px', display: 'flex', flexDirection: 'row' }}>
+					<Grid sx={{ alignItems: 'center', marginTop: '30px', display: 'flex', flexDirection: 'row' }}>
 						<Grid>
 							<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '15px', marginLeft: '25px' }}>추천 종목</Grid>
 							<Container sx={{ width: '703px', height: '260px', borderRadius: '20px', padding: '20px' }}>
@@ -130,11 +130,23 @@ function ResultPage() {
 						<Grid sx={{ margin: '0px 150px 30px 50px ' }}>
 							<Grid sx={{ fontSize: 20, fontWeight: 600, marginBottom: '25px' }}>마켓 이슈</Grid>
 							<Grid
-								sx={{ width: '450px', height: '260px', padding: '10px 20px', border: '1px solid #ddd', borderRadius: '20px' }}>
+								sx={{
+									width: '450px',
+									height: '260px',
+									padding: '10px 20px',
+									border: '1px solid #ddd',
+									borderRadius: '20px',
+									overflow: 'hidden',
+								}}>
 								<Carousel autoPlay={true} navButtonsAlwaysVisible={true}>
 									{contents.slice(0, 8).map((content, index) => (
-										<Grid sx={{ padding: '0px 40px' }} key={index}>
-											<Grid sx={{ padding: '30px' }}>{content}</Grid>
+										<Grid
+											sx={{
+												width: '450px',
+												height: '260px',
+											}}
+											key={index}>
+											<Grid sx={{ padding: '60px 20px', margin: '30px', width: '350px', height: '200px' }}>{content}</Grid>
 										</Grid>
 									))}
 								</Carousel>

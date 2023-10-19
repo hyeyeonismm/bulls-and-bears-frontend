@@ -133,7 +133,6 @@ function PortfolioPage() {
 							style={{
 								fontSize: '16px',
 
-								marginBottom: '10px',
 								marginTop: '15px',
 								color: '#58606d',
 								borderRadius: 20,
@@ -146,7 +145,6 @@ function PortfolioPage() {
 
 					<Button
 						sx={{
-							marginTop: '20px',
 							marginLeft: '30px',
 							width: '250px',
 							borderRadius: 6,
@@ -166,9 +164,10 @@ function PortfolioPage() {
 							<>
 								{`${name}님,`}
 								<br />
-								{amountLabel}을 넣으면
+								<span style={{ color: 'black', fontSize: 40 }}>{amountLabel}</span>을 넣으면
 								<br />
-								{durationLabel} 뒤 최대 {totalDividend}원의 배당금을
+								<span style={{ color: 'black', fontSize: 40 }}>{durationLabel}</span> 뒤 최대{' '}
+								<span style={{ color: 'black', fontSize: 40 }}>{totalDividend}원</span>의 배당금을
 								<br />
 								받을 수 있어요
 							</>
@@ -202,7 +201,7 @@ function PortfolioPage() {
 
 const LeftContainer = styled(Grid)(() => ({
 	width: 397,
-	height: 540,
+	height: 440,
 	borderRadius: 20,
 	background: '#ffff',
 	padding: '30px',
