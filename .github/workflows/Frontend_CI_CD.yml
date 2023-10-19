@@ -55,10 +55,10 @@ jobs:
    - name: Checkout for Kustomize repository
      uses: actions/checkout@v2
      with:
-      repository: bulls-and-bears/manifest
+      repository: bulls-and-bears/client-manifest
       ref: main
       token: ${{ secrets.ACTION_TOKEN }}
-      path: manifest
+      path: client-manifest
 
    - name: Update Kubernetes resources
      run: |
