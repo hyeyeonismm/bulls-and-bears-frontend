@@ -72,9 +72,7 @@ function PortfolioPage() {
 			case 5000000:
 				setAmountLabel('500만원');
 				break;
-			case 10000000:
-				setAmountLabel('1,000만원');
-				break;
+
 			default:
 				setAmountLabel('금액');
 		}
@@ -114,7 +112,6 @@ function PortfolioPage() {
 									<MenuItem value={500000}>50만원</MenuItem>
 									<MenuItem value={1000000}>100만원</MenuItem>
 									<MenuItem value={5000000}>500만원</MenuItem>
-									<MenuItem value={10000000}>1,000만원</MenuItem>
 								</Select>
 							</FormControl>
 						</div>
