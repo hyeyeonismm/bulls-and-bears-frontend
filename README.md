@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+<p align="middle">
+  <h1 align="middle">🐻 Bulls & Bears 🦬</h1>
+</p>
+<p align="middle">
+  주식 초보자들을 위한 배당금 수익 예측 서비스 Bulls & Bears입니다.
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개 📝
 
-## Available Scripts
+## 팀원 👨‍👨‍👧‍👧👩‍👦‍👦
 
-In the project directory, you can run:
+<table>
+  <tbody>
+    <tr>
+      <tr>
+      <td align="center">Backend</td> 
+      <td align="center">Backend</td>
+      <td align="center">Backend</td>
+      <td align="center">Frontend</td>
+      </tr>
+      <tr>
+      <td align="center"><a href="https://github.com/kkkwp"><img src="https://github.com/kkkwp.png" width="100px;" alt=""/></td>
+      <td align="center"><a href="https://github.com/LIG-JY"><img src="https://github.com/JY.png" width="100px;" alt=""/></td>
+      <td align="center"><a href="https://github.com/younghyun-na"><img src="https://github.com/younghyun-na.png" width="100px;" alt=""/></td>
+      <td align="center"><a href="https://github.com/hyeyeonismm"><img src="https://github.com/hyeyeonismm.png" width="100px;" alt=""/></td>
+      </tr>
+      <tr>
+      <td align="center"><a href="https://github.com/kkkwp">채윤</td> 
+      <td align="center"><a href="https://github.com/LIG-JY">재연</td>
+      <td align="center"><a href="https://github.com/younghyun-na">영현</td>
+      <td align="center"><a href="https://github.com/hyeyeonismm">혜연</td>
+      </tr>
+    </tr>
+  </tbody>
+</table>
 
-### `npm start`
+## 아키텍쳐 🏛
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 서비스 아키텍처
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![architecture](https://github.com/bulls-and-bears/.github/assets/67499154/02474d7b-b68c-44b4-845c-d1eb373a029c)
 
-### `npm test`
+## Docs 🌟
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [일정(Jira)](https://jyl.atlassian.net/jira/software/projects/DSP/boards/3/timeline)
+- [Wireframe(Figma)](https://www.figma.com/file/IiSimxVL1tSaNhej2HK5K0/wireframe?type=design&node-id=23%3A2166&mode=design&t=JSR7QlEL9K8yBx7U-1)
+- [ERD](https://www.erdcloud.com/d/rqMrH2fi7wfttFvpv)
+- API 명세서
+- [Team Rules](https://github.com/bulls-and-bears/.github/wiki/%F0%9F%93%8C-Rules)
+- [회의록](https://github.com/bulls-and-bears/.github/wiki/%F0%9F%93%81-%ED%9A%8C%EC%9D%98%EB%A1%9D)
+- [레퍼런스](https://github.com/bulls-and-bears/.github/wiki/%F0%9F%93%81-%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4)
+  
