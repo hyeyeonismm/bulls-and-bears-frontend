@@ -3,6 +3,9 @@
 </p>
 <p align="middle">
   주식 초보자들을 위한 배당금 수익 예측 서비스 Bulls & Bears입니다.
+
+  [데모 영상](https://youtu.be/x0Rn-7S0WA8?si=bjx4mNsN-k10SzUk)
+  
 </p>
 
 ## 프로젝트 소개 📝
